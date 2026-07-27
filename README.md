@@ -80,7 +80,7 @@ Uma primeira versão inferiu que o replay da DLQ preservaria o `event_id`. A reu
 
 ### 2. Caminho futuro tratado como arquivo existente
 
-A especificação inicialmente citou a sugestão `src/worker.ts` como se o arquivo já existisse. A auditoria de caminhos detectou que ele é apenas uma entry point proposta. A documentação foi revisada para separar claramente arquivos reais de componentes a criar.
+A especificação inicialmente citou o nome sugerido para a futura entry point do worker como se o arquivo já existisse. A auditoria de caminhos detectou que ele era apenas uma proposta. A documentação foi revisada para separar claramente arquivos reais de componentes a criar.
 
 ### 3. Fronteira entre RFC e FDD
 

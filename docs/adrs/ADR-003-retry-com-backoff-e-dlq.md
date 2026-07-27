@@ -51,4 +51,3 @@ Descartado em favor de uma DLQ separada, que mantém a consulta de pendentes mai
 
 - `TRANSCRICAO.md`: `[09:15] Diego`, `[09:16] Diego`, `[09:17] Larissa`, `[09:18] Diego`, `[09:35] Diego` e `[09:36] Sofia`.
 - Código: `src/middlewares/auth.middleware.ts`.
-

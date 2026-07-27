@@ -52,4 +52,3 @@ Adiado porque adicionaria coordenação por `order_id`, particionamento ou locki
 
 - `TRANSCRICAO.md`: `[09:02] Marcos`, `[09:09] Diego`, `[09:10] Larissa`, `[09:11] Diego`, `[09:12] Diego` e `[09:13] Larissa`.
 - Código: `src/server.ts` e `src/config/database.ts`.
-

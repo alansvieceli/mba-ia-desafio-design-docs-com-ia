@@ -45,10 +45,10 @@ Este documento detalha como construir a solução proposta no [RFC](RFC.md) e fo
 | `WebhookController` | Traduzir requests e responses do CRUD, rotação, deliveries e replay |
 | `WebhookService` | Aplicar regras de configuração e autorização |
 | `WebhookRepository` | Persistir configurações, histórico, outbox e DLQ |
-| `webhook.schemas.ts` | Validar UUIDs, HTTPS, filtros e payloads da API |
+| Schemas do módulo | Validar UUIDs, HTTPS, filtros e payloads da API |
 | `publishWebhookEvent` | Criar snapshots aplicáveis usando o `TransactionClient` corrente |
 | `WebhookProcessor` | Buscar pendências, assinar, enviar, registrar resultado e reagendar |
-| `src/worker.ts` | Inicializar Prisma, processor, loop, sinais e encerramento |
+| Entry point dedicada do worker | Inicializar Prisma, processor, loop, sinais e encerramento |
 
 ## 5. Modelo de dados proposto
 
@@ -61,8 +61,8 @@ Os nomes abaixo descrevem o desenho necessário; a implementação final deverá
 | `id: UUID` | Identificador do cadastro e valor de `X-Webhook-Id` |
 | `customerId: UUID` | Cliente proprietário |
 | `url: string` | Endpoint HTTPS |
-| `secretHash/encryptedSecret` | Secret protegida; a estratégia de armazenamento deve ser revisada por Segurança |
-| `previousSecret*` | Secret anterior e expiração do grace period de 24h |
+| `secretCiphertext` | Material da secret protegido e recuperável para assinatura; a estratégia deve ser revisada por Segurança |
+| `previousSecretCiphertext/previousSecretExpiresAt` | Secret anterior protegida e expiração do grace period de 24h |
 | `subscribedStatuses` | Status que geram eventos |
 | `active: boolean` | Habilita ou desabilita a emissão |
 | timestamps | Criação e atualização |
@@ -144,7 +144,7 @@ Itens do pedido não são incluídos. O consumidor usa `GET /orders/:id` quando 
 
 ### FDD-FLOW-02 — Polling e processamento
 
-1. `src/worker.ts` cria seu próprio `PrismaClient`.
+1. A entry point dedicada do worker cria seu próprio `PrismaClient`.
 2. O loop aguarda 2 segundos entre ciclos.
 3. Seleciona um lote pequeno de eventos `PENDING` ou elegíveis para retry, ordenado por `createdAt`.
 4. Marca o item como `PROCESSING` antes da chamada para reduzir reprocessamento acidental.
@@ -476,7 +476,7 @@ A biblioteca de tracing não foi definida na reunião; a implementação deve in
 | `src/shared/errors/app-error.ts` | Criar erros específicos do módulo com códigos `WEBHOOK_*`. |
 | `src/shared/logger/index.ts` | Reutilizar Pino e ampliar redaction para secrets/assinaturas do módulo. |
 | `src/config/database.ts` | API mantém o client atual; o processo worker chama `createPrismaClient()` e possui lifecycle separado. |
-| `src/server.ts` | Espelhar bootstrap, captura de sinais e encerramento na nova entry point `src/worker.ts`. |
+| `src/server.ts` | Espelhar bootstrap, captura de sinais e encerramento na futura entry point dedicada do worker. |
 | `tests/orders.test.ts` | Estender testes de mudança de status para provar criação/rollback da outbox e manter regressão de estoque/histórico. |
 
 ## 13. Dependências e compatibilidade

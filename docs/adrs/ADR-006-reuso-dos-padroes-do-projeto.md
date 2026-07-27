@@ -12,7 +12,7 @@ Introduzir padrões paralelos aumentaria a curva de aprendizado, a superfície o
 
 ## Decisão
 
-Implementar webhooks como um módulo em `src/modules/webhooks`, seguindo a separação já usada pelos demais domínios.
+Implementar webhooks como um novo módulo de domínio, seguindo a separação já usada pelos demais módulos existentes.
 
 Reutilizar:
 
@@ -55,4 +55,3 @@ Descartados porque produziriam respostas e telemetria inconsistentes com o resta
 
 - `TRANSCRICAO.md`: `[09:27] Bruno` a `[09:30] Larissa` e `[09:36] Larissa`.
 - Código: `src/app.ts`, `src/routes/index.ts`, `src/middlewares/auth.middleware.ts`, `src/middlewares/error.middleware.ts`, `src/shared/errors/app-error.ts`, `src/shared/logger/index.ts`, `src/config/database.ts` e `tests/orders.test.ts`.
-

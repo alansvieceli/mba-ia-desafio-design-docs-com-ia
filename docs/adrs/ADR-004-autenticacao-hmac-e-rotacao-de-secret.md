@@ -50,4 +50,3 @@ Descartada porque não daria ao cliente tempo para atualizar seus consumidores s
 
 - `TRANSCRICAO.md`: `[09:19] Sofia` a `[09:24] Larissa`.
 - Código: `src/shared/logger/index.ts` e `src/modules/orders/order.schemas.ts`.
-

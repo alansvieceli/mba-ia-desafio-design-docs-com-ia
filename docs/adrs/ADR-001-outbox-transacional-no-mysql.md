@@ -50,4 +50,3 @@ Descartada porque existe uma janela de falha entre confirmar a mudança e public
 
 - `TRANSCRICAO.md`: `[09:04] Bruno`, `[09:06] Diego`, `[09:07] Larissa`, `[09:08] Larissa`, `[09:40] Bruno`, `[09:41] Diego`, `[09:51] Larissa` e `[09:52] Larissa`.
 - Código: `src/modules/orders/order.service.ts` e `prisma/schema.prisma`.
-
