@@ -40,3 +40,35 @@ Este documento liga itens normativos e decisões às suas fontes. Ele será cons
 | RFC-SCOPE-02 | `docs/RFC.md` | Fora de escopo | Dashboard visual pertence a projeto separado | TRANSCRICAO | `[09:39] Marcos`; `[09:40] Larissa` |
 | RFC-INT-01 | `docs/RFC.md` | Integração | Fluxo de mudança de status já é transacional | CODIGO | `src/modules/orders/order.service.ts` |
 | RFC-PLAN-01 | `docs/RFC.md` | Planejamento | Estimar três sprints e dois dias úteis de revisão de segurança | TRANSCRICAO | `[09:46] Larissa`; `[09:46] Sofia`; `[09:47] Larissa` |
+| FDD-FLOW-01 | `docs/FDD.md` | Fluxo | Criar snapshot na outbox dentro da transação de mudança de status | TRANSCRICAO | `[09:40] Bruno`; `[09:41] Diego`; `[09:52] Larissa` |
+| FDD-FLOW-01-FILTER | `docs/FDD.md` | Regra | Criar outbox somente para endpoints que assinam o novo status | TRANSCRICAO | `[09:33] Marcos`; `[09:34] Bruno` |
+| FDD-FLOW-01-SIZE | `docs/FDD.md` | Restrição | Rejeitar payload acima de 64 KB sem truncar | TRANSCRICAO | `[09:23] Sofia`; `[09:24] Larissa` |
+| FDD-FLOW-02 | `docs/FDD.md` | Fluxo | Worker busca pendentes em lote pequeno e ordem de criação | TRANSCRICAO | `[09:08] Diego`; `[09:09] Diego` |
+| FDD-FLOW-02-PROC | `docs/FDD.md` | Integração | Worker abre um PrismaClient próprio por ser outro processo | TRANSCRICAO | `[09:29] Diego`; `[09:30] Bruno` |
+| FDD-FLOW-03 | `docs/FDD.md` | Resiliência | Aplicar backoff 1m/5m/30m/2h/12h | TRANSCRICAO | `[09:17] Diego`; `[09:17] Larissa` |
+| FDD-FLOW-04 | `docs/FDD.md` | Fluxo | Persistir falha permanente em DLQ separada | TRANSCRICAO | `[09:17] Larissa`; `[09:18] Diego` |
+| FDD-FLOW-05 | `docs/FDD.md` | Fluxo | Replay recoloca evento na outbox, exige ADMIN e auditoria | TRANSCRICAO | `[09:18] Diego`; `[09:36] Sofia` |
+| FDD-FLOW-06 | `docs/FDD.md` | Segurança | Rotacionar secret com sobreposição de 24 horas | TRANSCRICAO | `[09:21] Sofia`; `[09:22] Sofia` |
+| FDD-PAYLOAD-01 | `docs/FDD.md` | Contrato outbound | Payload contém IDs, tipo, timestamp, status e dados básicos sem items | TRANSCRICAO | `[09:43] Diego`; `[09:44] Bruno` |
+| FDD-HEADER-01 | `docs/FDD.md` | Contrato outbound | Enviar Event ID, Signature, Timestamp, Webhook ID e Content-Type | TRANSCRICAO | `[09:44] Diego`; `[09:44] Sofia` |
+| FDD-API-01 | `docs/FDD.md` | Contrato HTTP | Criar configuração com URL, cliente, secret gerada e filtros | TRANSCRICAO | `[09:31] Marcos`; `[09:32] Larissa` |
+| FDD-API-02 | `docs/FDD.md` | Contrato HTTP | Listar webhooks de um cliente autenticado | TRANSCRICAO | `[09:32] Larissa`; `[09:33] Bruno` |
+| FDD-API-03 | `docs/FDD.md` | Contrato HTTP | Editar URL, filtros e estado da configuração | TRANSCRICAO | `[09:21] Bruno`; `[09:33] Bruno` |
+| FDD-API-04 | `docs/FDD.md` | Contrato HTTP | Remover configuração de webhook | TRANSCRICAO | `[09:33] Bruno` |
+| FDD-API-05 | `docs/FDD.md` | Contrato HTTP | Rotacionar secret pela API | TRANSCRICAO | `[09:21] Sofia`; `[09:22] Sofia` |
+| FDD-API-06 | `docs/FDD.md` | Contrato HTTP | Consultar as últimas 100 entregas com resultado e duração | TRANSCRICAO | `[09:34] Marcos` |
+| FDD-API-07 | `docs/FDD.md` | Contrato HTTP | Reprocessar DLQ por endpoint administrativo | TRANSCRICAO | `[09:18] Diego`; `[09:35] Diego` |
+| FDD-ERR-01 | `docs/FDD.md` | Padrão de erro | Usar códigos específicos com prefixo `WEBHOOK_` | TRANSCRICAO | `[09:28] Bruno`; `[09:29] Larissa` |
+| FDD-RES-01 | `docs/FDD.md` | Resiliência | Timeout HTTP de 10 segundos gera falha e retry | TRANSCRICAO | `[09:42] Sofia`; `[09:42] Diego` |
+| FDD-RES-02 | `docs/FDD.md` | Resiliência | Manter Event ID estável durante as tentativas do evento | TRANSCRICAO | `[09:24] Diego`; `[09:25] Diego` |
+| FDD-OBS-01 | `docs/FDD.md` | Observabilidade | Reutilizar Pino para logs estruturados e correlacionados | TRANSCRICAO | `[09:29] Bruno`; `[09:30] Larissa` |
+| FDD-OBS-02 | `docs/FDD.md` | Observabilidade | Monitorar backlog, latência, retries e DLQ | TRANSCRICAO | `[09:07] Bruno`; `[09:08] Diego`; `[09:38] Diego` |
+| FDD-INT-01 | `docs/FDD.md` | Integração | Estender a transação de `changeStatus` | CODIGO | `src/modules/orders/order.service.ts` |
+| FDD-INT-02 | `docs/FDD.md` | Integração | Reutilizar estados e regras de transição do pedido | CODIGO | `src/modules/orders/order.status.ts` |
+| FDD-INT-03 | `docs/FDD.md` | Integração | Adicionar modelos e índices seguindo as convenções Prisma | CODIGO | `prisma/schema.prisma` |
+| FDD-INT-04 | `docs/FDD.md` | Integração | Compor controller e registrar as rotas do módulo | CODIGO | `src/app.ts`; `src/routes/index.ts` |
+| FDD-INT-05 | `docs/FDD.md` | Integração | Reutilizar autenticação e autorização ADMIN | CODIGO | `src/middlewares/auth.middleware.ts` |
+| FDD-INT-06 | `docs/FDD.md` | Integração | Reutilizar validação, AppError e middleware central | CODIGO | `src/middlewares/validate.middleware.ts`; `src/shared/errors/app-error.ts`; `src/middlewares/error.middleware.ts` |
+| FDD-INT-07 | `docs/FDD.md` | Integração | Reutilizar logger e ampliar redaction de credenciais | CODIGO | `src/shared/logger/index.ts` |
+| FDD-INT-08 | `docs/FDD.md` | Integração | Espelhar bootstrap e shutdown no worker | CODIGO | `src/server.ts`; `src/config/database.ts` |
+| FDD-TEST-01 | `docs/FDD.md` | Teste | Estender testes de pedidos para atomicidade e regressão | CODIGO | `tests/orders.test.ts` |
