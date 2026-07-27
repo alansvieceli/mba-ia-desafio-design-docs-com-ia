@@ -72,3 +72,38 @@ Este documento liga itens normativos e decisões às suas fontes. Ele será cons
 | FDD-INT-07 | `docs/FDD.md` | Integração | Reutilizar logger e ampliar redaction de credenciais | CODIGO | `src/shared/logger/index.ts` |
 | FDD-INT-08 | `docs/FDD.md` | Integração | Espelhar bootstrap e shutdown no worker | CODIGO | `src/server.ts`; `src/config/database.ts` |
 | FDD-TEST-01 | `docs/FDD.md` | Teste | Estender testes de pedidos para atomicidade e regressão | CODIGO | `tests/orders.test.ts` |
+| PRD-OBJ-01 | `docs/PRD.md` | Objetivo | Substituir polling dos três clientes por notificação de mudança de status | TRANSCRICAO | `[09:00] Marcos` |
+| PRD-METRIC-01 | `docs/PRD.md` | Métrica | Fazer primeira tentativa em menos de 10 segundos em condição normal | TRANSCRICAO | `[09:02] Marcos`; `[09:09] Diego` |
+| PRD-METRIC-02 | `docs/PRD.md` | Métrica | Manter zero mudanças assinadas sem evento persistido | TRANSCRICAO | `[09:06] Diego`; `[09:40] Bruno` |
+| PRD-FR-01 | `docs/PRD.md` | Requisito Funcional | Cadastrar webhook com cliente, URL e status de interesse | TRANSCRICAO | `[09:31] Marcos`; `[09:32] Larissa` |
+| PRD-FR-02 | `docs/PRD.md` | Requisito Funcional | Gerar e devolver secret única na criação | TRANSCRICAO | `[09:21] Sofia`; `[09:31] Marcos` |
+| PRD-FR-03 | `docs/PRD.md` | Requisito Funcional | Listar, editar e remover configurações | TRANSCRICAO | `[09:33] Bruno` |
+| PRD-FR-04 | `docs/PRD.md` | Requisito Funcional | Filtrar eventos pelo novo status na inserção | TRANSCRICAO | `[09:33] Marcos`; `[09:34] Bruno` |
+| PRD-FR-05 | `docs/PRD.md` | Requisito Funcional | Preservar snapshot do pedido no instante da mudança | TRANSCRICAO | `[09:51] Bruno`; `[09:52] Larissa` |
+| PRD-FR-06 | `docs/PRD.md` | Requisito Funcional | Entregar JSON assinado com IDs e timestamp | TRANSCRICAO | `[09:43] Diego`; `[09:44] Diego`; `[09:44] Sofia` |
+| PRD-FR-07 | `docs/PRD.md` | Requisito Funcional | Retentar em 1m/5m/30m/2h/12h | TRANSCRICAO | `[09:17] Diego`; `[09:17] Larissa` |
+| PRD-FR-08 | `docs/PRD.md` | Requisito Funcional | Mover falha permanente para DLQ separada | TRANSCRICAO | `[09:17] Larissa`; `[09:18] Diego` |
+| PRD-FR-09 | `docs/PRD.md` | Requisito Funcional | Permitir replay manual por ADMIN com auditoria | TRANSCRICAO | `[09:18] Diego`; `[09:36] Sofia` |
+| PRD-FR-10 | `docs/PRD.md` | Requisito Funcional | Consultar as últimas 100 entregas e seus resultados | TRANSCRICAO | `[09:34] Marcos` |
+| PRD-FR-11 | `docs/PRD.md` | Requisito Funcional | Rotacionar secret com 24h de sobreposição | TRANSCRICAO | `[09:21] Sofia`; `[09:22] Sofia` |
+| PRD-FR-12 | `docs/PRD.md` | Requisito Funcional | Manter Event ID nas retentativas para deduplicação | TRANSCRICAO | `[09:24] Diego`; `[09:25] Diego` |
+| PRD-NFR-01 | `docs/PRD.md` | Requisito Não Funcional | Entregar em menos de 10 segundos em condição normal | TRANSCRICAO | `[09:02] Marcos`; `[09:10] Marcos` |
+| PRD-NFR-02 | `docs/PRD.md` | Requisito Não Funcional | Tornar mudança de status e outbox atômicas | TRANSCRICAO | `[09:06] Diego`; `[09:41] Diego` |
+| PRD-NFR-03 | `docs/PRD.md` | Requisito Não Funcional | Oferecer garantia at-least-once | TRANSCRICAO | `[09:24] Diego`; `[09:26] Larissa` |
+| PRD-NFR-04 | `docs/PRD.md` | Requisito Não Funcional | Aceitar somente endpoint HTTPS | TRANSCRICAO | `[09:23] Sofia` |
+| PRD-NFR-05 | `docs/PRD.md` | Requisito Não Funcional | Assinar corpo com HMAC-SHA256 e secret isolada | TRANSCRICAO | `[09:20] Sofia`; `[09:21] Sofia` |
+| PRD-NFR-06 | `docs/PRD.md` | Requisito Não Funcional | Limitar payload a 64 KB sem truncamento | TRANSCRICAO | `[09:23] Sofia`; `[09:24] Larissa` |
+| PRD-NFR-07 | `docs/PRD.md` | Requisito Não Funcional | Aplicar timeout HTTP de 10 segundos | TRANSCRICAO | `[09:42] Diego` |
+| PRD-NFR-08 | `docs/PRD.md` | Requisito Não Funcional | Não expor credenciais em logs | TRANSCRICAO | `[09:22] Diego`; `[09:29] Bruno` |
+| PRD-NFR-09 | `docs/PRD.md` | Limitação | Ordem por pedido depende de worker único | TRANSCRICAO | `[09:12] Diego`; `[09:13] Larissa` |
+| PRD-NFR-10 | `docs/PRD.md` | Requisito Não Funcional | Reutilizar stack e padrões atuais | TRANSCRICAO | `[09:27] Bruno`; `[09:30] Larissa` |
+| PRD-SCOPE-01 | `docs/PRD.md` | Fora de escopo | Email como fallback fica para outra fase | TRANSCRICAO | `[09:37] Larissa` |
+| PRD-SCOPE-02 | `docs/PRD.md` | Fora de escopo | Dashboard visual fica em projeto separado | TRANSCRICAO | `[09:39] Marcos`; `[09:40] Larissa` |
+| PRD-SCOPE-03 | `docs/PRD.md` | Fora de escopo | Rate limiting será observado antes de decidido | TRANSCRICAO | `[09:38] Diego`; `[09:39] Larissa` |
+| PRD-RISK-01 | `docs/PRD.md` | Risco | Endpoint lento pode acumular backlog | TRANSCRICAO | `[09:07] Bruno`; `[09:42] Diego` |
+| PRD-RISK-02 | `docs/PRD.md` | Risco | Cliente pode processar duplicata | TRANSCRICAO | `[09:24] Diego`; `[09:25] Sofia` |
+| PRD-RISK-03 | `docs/PRD.md` | Risco | Vazamento de secret compromete um endpoint | TRANSCRICAO | `[09:21] Sofia`; `[09:22] Diego` |
+| PRD-RISK-04 | `docs/PRD.md` | Risco | Crescimento da outbox pode degradar o banco | TRANSCRICAO | `[09:07] Bruno`; `[09:08] Diego` |
+| PRD-DEP-01 | `docs/PRD.md` | Dependência | Depender do fluxo transacional e dos estados atuais de pedido | CODIGO | `src/modules/orders/order.service.ts`; `src/modules/orders/order.status.ts` |
+| PRD-DEP-02 | `docs/PRD.md` | Dependência | Depender de JWT e papel ADMIN existentes | CODIGO | `src/middlewares/auth.middleware.ts` |
+| PRD-TEST-01 | `docs/PRD.md` | Validação | Preservar regressão de transições, estoque e histórico | CODIGO | `tests/orders.test.ts` |
